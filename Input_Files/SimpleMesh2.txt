@@ -1,0 +1,47 @@
+BEGIN_FILE
+	Version	2
+	Dimension	XY
+	InitialConfiguration
+
+BEGIN_BLOCK
+
+BEGIN_NODES
+1	0	100
+2	50	50
+3	100	100
+4	100	0
+5	0	0
+
+BEGIN_EDGES
+
+BEGIN_FACES
+
+BEGIN_ELEMENTS
+1	Quad	EL1	ECTri1	1	5	2	0	1	0
+2	Quad	EL1	ECTri1	2	4	3	35344832	1	0
+3	Quad	EL1	ECTri1	4	2	5	0	1	0
+
+BEGIN_MATERIALS
+EL1	200	0.9
+
+BEGIN_ELEMENT_CONTROLS
+ECTri1	PlaneStress	0
+
+BEGIN_BOUNDARY_CONDITIONS
+1	Node	1	DX	0	DY	0	
+
+BEGIN_CONTROLS
+StartingTime	0
+NumberSteps	5
+StepSize	0.1
+ActiveStep	0
+ActiveTime	0
+OutputEvery	1
+Solver	UmfPack
+StiffnessReduction	0
+OutputVariables
+ScreenOutput
+
+BEGIN_OUTPUT_VARIABLES
+Time	0
+

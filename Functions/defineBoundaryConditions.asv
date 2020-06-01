@@ -1,0 +1,54 @@
+function [ fx_set,fy_set,f,u ] = defineBoundaryConditions( node_coords,BCxmin,BCxmax,BCymin,BCymax,axes )
+%Defines the four boundary conditions used in the program
+    %fx_set - list of nodes where force in X is fixed
+    %fx_set - list of nodes where force in Y is fixed
+    %f - list of forces associated with each node
+    %u - list of displacements associated with each node
+    %fx_min, fx_max - nodes at the boundaries
+    
+    dx_min = find(node_coords(:,1)==BCxmin);
+    dx_max = find(node_coords(:,1)==BCxmax);
+    dy_min = find(node_coords(:,2)==BCymin);
+    dy_max = find(node_coords(:,2)==BCymax);
+    %All y-forces are set by element weight
+    
+%     fy_set = find( (node_coords(:,2)~=BCxmin) + (node_coords(:,2)~=BCxmax) + ...
+%         (node_coords(:,2)~=BCymin) + (node_coords(:,2)~=BCymax ))
+    %If f and u are column vectors, alternating x and y forces
+    f = ones(length(node_coords(:,1))*2,1);
+    u = zeros(length(node_coords(:,1))*2,1);
+    %Setting b boundary to zero force
+%     for i =length(node_coords(:,1))
+%         if sum(find([dx_min;dx_max;dy_min;dy_max])~=0)
+%            fy_set = i;
+%         end
+%     end
+    
+    for i=1:length(dx_min)
+       u(dx_min(i)*2-1,1)=0;
+    end
+    for i=1:length(dx_max)
+       u(dx_max(i)*2-1,1)=0;
+    end
+    for i=1:length(dy_min)
+       u(dy_min(i)*2,1)=0;
+    end
+
+    
+    
+    fx_set = [];
+    hold on
+    for i=1:length(dx_min);
+       plot(axes,node_coords((dx_min(i)),1),node_coords(dx_min(i),2),'s','MarkerSize',BCymax/12,'MarkerFaceColor','r','MarkerEdgeColor','k');
+    end
+    for i=1:length(dx_max);
+       plot(axes,node_coords((dx_max(i)),1),node_coords(dx_max(i),2),'s','MarkerSize',BCymax/12,'MarkerFaceColor','r','MarkerEdgeColor','k');
+    end
+    for i=1:length(dy_min);
+       plot(axes,node_coords((dy_min(i)),1),node_coords(dy_min(i),2),'s','MarkerSize',BCymax/12,'MarkerFaceColor','r','MarkerEdgeColor','k');
+    end
+    for i=1:length(fy_set);
+       plot(axes,node_coords((fy_set(i)),1),node_coords(fy_set(i),2)+.01*BCymax,'v','MarkerSize',BCymax/10,'MarkerFaceColor','r','MarkerEdgeColor','k');
+    end
+end
+
