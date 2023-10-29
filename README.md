@@ -1,4 +1,24 @@
-Program Purpose 
-Aid the design of subsurface construction by applying the Finite Element Method to better understand how the stress is distributed.
+# Program Purpose
+Tool for underground geotechnical design which applies the Finite Element Method to model stress and strain distribution around underground excavations.
 
-Program Methodology
+## Methodology
+<img src="/Images/Methodology.png" alt="Methodology" width="1000"/>
+
+## Program Images
+Main Screen:
+<img src="/Images/GeoSolverMainScreen.png" alt="MainScreen" 
+width="1000"/>
+
+Material Properties:
+<img src="/Images/GeoSolverMaterialProperties.png" alt="MainScreen" width="1000"/>
+
+Example Results:
+<img src="/Images/GeoSolverResults.png" alt="MainScreen" width="1000"/>
+<img src="/Images/GeoSolverResults2.png" alt="MainScreen" width="1000"/>
+
+## Assumptions
+- Constant strain triangular elements
+- Plane strain analysis
+- Linear elastic
+- Gravitational loading – EJLs
+- Boundary conditions – zero displacement
